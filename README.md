@@ -58,7 +58,7 @@ has_one :address
 |shipping_fee_id          |integer   | null: false                    |
 |prefecture_id            |integer   | null: false                    |
 |shipping_day_id          |integer   | null: false                    |
-|price                    |string    | null: false                    |
+|price                    |integer   | null: false                    |
 
 ### Association
 belongs_to :user
