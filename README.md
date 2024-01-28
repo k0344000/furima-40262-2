@@ -4,28 +4,30 @@
 
 ## users テーブル(ユーザー情報)
 
-|Colum|                   |Type  | Options    |
-|-------------------------|------|------------|
-|nickname                 |string| null: false|
-|email                    |string| null: false|
-|password                 |string| null: false|
-|password_confirmation    |string| null: false|
-|full_name                |string| null: false|
-|kana_name                |string| null: false|
-|birthday                 |date  | null: false|
+|Colum|                   |Type  | Options     |
+|-------------------------|------|-------------|
+|nickname                 |string| null: false |
+|email                    |string| unique: true|
+|encrypted_password       |string| null: false |
+|last_name                |string| null: false |
+|first_name               |string| null: false |
+|last_name_kana           |string| null: false |
+|first_name_kana          |string| null: false |
+|birthday                 |date  | null: false |
 
 ### Association
 -has_many : orders
+-has_many : items
 
 ## addresses テーブル(受け取り先情報)
 
 |Colum|                   |Type      | Options                        |
 |-------------------------|----------|--------------------------------|
 |postal_code              |string    | null: false                    |
-|prefecture               |string    | null: false                    |
+|prefecture_id            |integer   | null: false                    |
 |city_name                |string    | null: false                    |
 |block_name               |string    | null: false                    |
-|building_name            |string    | null: false                    |
+|building_name            |string    |                                |
 |phone_number             |string    | null: false                    |
 |order                    |references| null: false,　foreign_key: true|
 
@@ -42,6 +44,7 @@
 ### Association
 belongs_to :user
 belongs_to :item
+has_one :address
 
 ## items テーブル(出品情報)
 
@@ -49,16 +52,17 @@ belongs_to :item
 |-------------------------|----------|--------------------------------|
 |user                     |references| null: false,　foreign_key: true|
 |name                     |string    | null: false                    |
-|description              |string    | null: false                    |
-|category                 |string    | null: false                    |
-|condition                |string    | null: false                    |
-|shipping_fee             |string    | null: false                    |
-|prefecture               |string    | null: false                    |
-|shipping_days             |string   | null: false                    |
+|description              |text      | null: false                    |
+|category_id              |integer   | null: false                    |
+|condition_id             |integer   | null: false                    |
+|shipping_fee_id          |integer   | null: false                    |
+|prefecture_id            |integer   | null: false                    |
+|shipping_days_id         |integer   | null: false                    |
 |price                    |string    | null: false                    |
 
 ### Association
 belongs_to :user
+has_one :order
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
