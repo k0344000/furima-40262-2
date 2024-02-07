@@ -52,22 +52,23 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       it "passwordが半角数字のみの場合は登録できない" do
-        @user.password = "abcdef"
-        @user.password_confirmation = "abcdef"
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation dosen't match Password")
-      end
-      it "passwordが半角英字のみの場合は登録できない" do
         @user.password = "123456"
         @user.password_confirmation = "123456"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation dosen't match Password")
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+      it "passwordが半角英字のみの場合は登録できない" do
+        @user.password = "abcdef"
+        @user.password_confirmation = "abcdef"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
       end
       it "passwordが全角の場合は登録できない" do
-        @user.password = "ＡＢＣ１２３"
-        @user.password_confirmation = "ＡＢＣ１２３"
-        expect(@user.errors.full_messages).to include("First name can't be blank", "First name is invalid")
-      end
+        @user.password = "ＡＢＣ１２３"  # ここに全角文字のパスワードを設定します
+        @user.password_confirmation = "ＡＢＣ１２３"  # 同じく全角文字のパスワードを設定します
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end      
       it "last_nameが半角文字だと登録できない" do
         @user.last_name = "yamada"
         @user.valid?
