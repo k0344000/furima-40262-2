@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "furimas#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :furimas do
-    resources :orders, only: [:index]
+    resources :orders, only: [:index, :new, :create]
   end
   # Defines the root path route ("/")
   
