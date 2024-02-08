@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   belongs_to :user
-  has_one :order
+  #has_one :order
   has_one_attached :image
 
   belongs_to_active_hash :category
@@ -18,5 +18,5 @@ class Item < ApplicationRecord
 
   validates :category_id, :condition_id, :shipping_fee_id, :prefecture_id, :shipping_day_id, numericality: { other_than: 1 }
 
-  validates :price, numericality: { greater_than: 300, less_than: 9999999 }
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
 end
