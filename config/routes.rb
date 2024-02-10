@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
 
   resources :items do
-    resources :orders, only: [:index, :new, :create, :edit, :update]
+    resources :orders, only: [:index, :new, :create, :edit, :update, :destroy]
   end
   # Defines the root path route ("/")
   
