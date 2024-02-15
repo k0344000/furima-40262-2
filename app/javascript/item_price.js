@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+function calculateTaxAndProfit() {
   const priceInput = document.getElementById("item-price");
   const addTaxDom = document.getElementById("add-tax-price");
   const profitDom = document.getElementById("profit");
@@ -11,4 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     addTaxDom.innerHTML = tax.toLocaleString(); // 販売手数料を表示
     profitDom.innerHTML = profit.toLocaleString(); // 利益を表示
   });
-});
+}
+window.addEventListener('turbo:load', calculateTaxAndProfit);
+window.addEventListener('turbo:render', calculateTaxAndProfit);
